@@ -1,0 +1,167 @@
+/* Nieves Borrero Barea */
+body {
+    background-color: #75624C;
+    color: white;
+}
+
+a{ text-decoration: none; }
+
+main {
+    background-color: #D2B188;
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    box-shadow: 0 0 15px #2C241C;
+}
+h1{
+    text-align: center;
+    font-weight: bold;
+}
+body > div{
+    background-color: #BD9F7A;
+    width:85%;
+    margin:auto;
+    text-align: center;
+    padding: 18px;
+    border:3px solid #F0F0F0;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+button{
+    margin-top: 10px;
+    background-color: #E4F2E4;
+    color: #75624C;
+}
+
+button:hover{
+    background-color: #F0F0F0;
+}
+
+button:active{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+#btnCheck{   
+    border-radius: 100%;
+    height: 50px;
+    position: fixed;
+    bottom:0px;
+    left: 5px;
+    border: 4px solid #473B2E;
+    color: #473B2E;
+}
+
+#btnCheck span{
+    padding: 10px 10px 10px;
+    display: inline-block;
+}
+
+#btnReset{
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 10px;
+}
+
+
+#listaColores {
+    border:3px solid #75624c;
+    border-radius: 0px 10px 0px 0px;
+    align-items: center;
+    justify-content: center;
+}
+
+#divCampeon {
+    display: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 900px;
+    border-radius: 20px;
+    text-align: center;
+}
+#tablero {
+    border:3px solid #75624c;
+    border-radius: 10px 0px 0px;
+    text-align:center;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.fichas{
+    border-radius: 100%;
+    height: 60px;
+    width: 60px;
+    margin: 0 auto;   
+    border: 1px solid #75624c; 
+}
+
+#roja {
+    background-color: red;
+    margin-top: 10px;
+}
+
+#blanca {
+    background-color: white;
+    margin-top: 10px;
+}
+
+#negra {
+    background-color: black;
+    margin-top: 10px;
+}
+
+#amarilla{
+    background-color: yellow;
+    margin-top: 10px;
+}
+
+#naranja {
+    background-color: orange;
+    margin-top: 10px;
+}
+
+#marron {
+    background-color: brown;
+    margin-top: 10px;
+}
+
+#azul {
+    background-color: blue;
+    margin-top: 10px;
+}
+
+#verde {
+    background-color: green;
+    margin-top: 10px;
+}
+
+.pistas {
+    display: inline-block;
+}
+
+.casilla {
+    display: inline-block;
+    border-radius: 100px;
+    height: 70px;
+    width: 70px;
+    margin: 25px;
+    border: 1px solid #75624c;
+}
+
+.casillaPista {
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    margin: 25px;
+    border: 1px solid #75624c;
+}
+
+
+
+

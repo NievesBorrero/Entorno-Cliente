@@ -1,0 +1,49 @@
+<title>Ejemplo 2 - Nieves Borrero</title>
+        <meta charset="UTF-8"/>
+        <script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+
+        <script>
+            $(document).ready(function(){
+
+                let inputs = $("input");
+                let checked;
+
+                inputs.each(function(index) {
+                    $(this).change(function() {  // Al cambiar un input...
+                        
+                        if($(this).prop("checked")) { // Comprueba si está checked
+
+                            checked=index; // Recoge el index del elemento seleccionado
+
+                            /*Recorre todos los inputs y desabilita todos los inputs excepto el marcado.*/
+                            inputs.each(function(index) { 
+                                if(index!=checked)
+                                    $(this).attr("disabled",true);
+                            });
+                        }
+                                
+                        else {
+                            inputs.each(function(index) { // Si no está checked
+                                if(index!=checked) 
+                                    $(this).attr("disabled",false); //Recorre todos los inputs y los habilita                 
+                            });
+                        }   
+                    });
+                });
+            });
+        </script>
+
+    </head>  
+
+    <body>
+
+        <div class="simpleForm">
+            Checkbox 1<input type="checkbox" name="checkbox">
+            Checkbox 2<input type="checkbox" name="checkbox">
+            Checkbox 3<input type="checkbox" name="checkbox">
+        </div>
+
+    </body>
+
+</html>

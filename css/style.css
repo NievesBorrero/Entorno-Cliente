@@ -1,0 +1,34 @@
+body{
+	background-color: #EEEEEE;
+}
+
+a{
+	text-decoration: none;
+}
+
+h1, header h2{
+	text-align: center;
+	color: #0D8130;
+}
+
+section, article{
+	background-color: #FFFFFF;
+	margin: 5px;
+	padding:10px;
+	
+}
+
+article{
+	border: 1px solid #6DB382;
+	box-shadow: 0 3px 6px gray, 0 3px 6px gray;
+}
+
+section{
+	border: 1px solid #0D8130;
+	box-shadow: 0 3px 6px rgba(3, 38, 14,0.16), 0 3px 6px rgba(5,51,19,0.23);
+}
+
+footer{
+	text-align: center;
+	margin-top: 20px;
+}

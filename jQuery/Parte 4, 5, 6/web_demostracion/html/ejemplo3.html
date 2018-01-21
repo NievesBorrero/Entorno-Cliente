@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Ejemplo 3 - Nieves Borrero</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+       <script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+        <script>
+        	$(document).ready(function(){
+
+                //Un evento
+               $("#botoncito").bind("mouseenter",function() {
+                    $("#element").css("background","green");
+                     $("#element").css("color","black");
+               });
+
+                //Varios eventos
+        	   $("#botoncito").bind("click mouseleave", function() {
+                    $("#element").css("background","blue");
+                    $("#element").css("color","white");
+               });
+
+               
+					
+			});
+        </script>
+
+    </head>  
+
+    <body>
+        	<div id="botoncito" class="box">Pasa el ratón por encima mía, quítalo o púlsame y verás como hago uso de bind</div>
+            <div id="element" class="box">Yo soy la caja que cambia, ¡ATENCIÓN!</div>
+    </body>
+
+</html>

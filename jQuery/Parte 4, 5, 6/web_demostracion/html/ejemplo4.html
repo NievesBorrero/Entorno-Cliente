@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Ejemplo 4 - Nieves Borrero</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+
+        <script>
+        	$(document).ready(function(){
+
+        	   $("#pulsame").click(function(event) {
+                   $("#info").html(
+                        "<h3>Información asociada al evento:</h3>" +
+                        "<b>pageX:</b> " + event.pageX + "<br><br>" +
+                        "<b>pageY:</b> " + event.pageY + "<br><br>" +
+                        "<b>currentTarget:</b> " + event.currentTarget + "<br><br>" +
+                        "<b>timeStamp:</b> " + event.timeStamp + "<br><br>" +
+                        "<b>isDefaultPrevented:</b> " + event.isDefaultPrevented + "<br><br>" +
+                        "<b>type:</b> " + event.type + "<br><br>"
+                    );
+               });
+
+			});
+        </script>
+
+    </head>  
+
+    <body>
+
+    	<div id="pulsame" class="box">
+	    	Púlsame, te mostraré alguna información del evento
+	    </div>
+
+        <div id="info">
+        </div>
+
+    </body>
+
+</html>

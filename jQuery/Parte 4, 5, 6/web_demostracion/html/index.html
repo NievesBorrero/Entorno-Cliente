@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <title>Web demostración - Nieves Borrero</title>
+
+    </head>  
+
+    <body>
+        <main>
+        	<h1>Demostración de lo visto en el punto IV, V y VI del manual de jQuery</h1>
+                <article>
+                   <header><b>1. Distintas formas de acceder al atributo checked. Compruébalo en las distintas plataformas, tanto con input como con radio buttons </b></header><br>
+                       <a class="btn" href="ejemplo1.html"> Demo </a>
+                </article>
+
+                <article>
+                    <header><b>2. De tres 'input type="checkbox"' que te deshabilite 2 al seleccionar una de ellas</b></header><br>
+                    <a class="btn" href="ejemplo2.html"> Demo </a>
+                </article>
+
+                <article>
+                    <header><b>3. Asociar dintintos eventos mediante .bind(object)</b></header><br>
+                    <a class="btn" href="ejemplo3.html"> Demo </a>
+                </article>
+
+                <article>
+                    <header><b>4. Indica los eventos estándares en el DOM</b></header><br>
+                    
+                    <h4>De ratón</h4>
+                    	<p>Algunos de ellos son:</p>
+                        <ul>
+                            <li><b>click: al hacer click en un elemento</b> </li>
+                            <li><b>dblclick: </b>  al hacer doble click en un elemento</b></li>
+                            <li><b>mousedown: </b>  al pulsar sobre un elemento</b></li>
+                            <li><b>mouseup: </b> al levantar el botón después de hacer mousedown</li>
+                            <li><b>mouseover: </b> al poner el cursor sobre un elemento</li>
+                            <li><b>mousemove: </b> mientras el cursor está pasando sobre un elemento</li>
+                            <li><b>mouseout: </b> al salir el cursor de un elemento</li>
+                        </ul>
+                    <h4>De teclado</h4>
+                    	<p>Algunos de ellos son:</p>
+                        <ul>
+                            <li><b>keydown: </b> al pulsar una tecla, aparece antes del keypress.</li>
+                            <li><b>keypress: </b> al presionar una tecla (se mantiene), aparece después del keydown.</li>
+                            <li><b>keyup: </b> al dejar de presionar una tecla</li>
+                        </ul>
+                    <h4>De HTML:</h4>
+                    	<p>Algunos de ellos son:</p>
+                        <ul>
+                            <li><b>load: </b>cuando se ha cargado todo el elemento, incluyendo frames, imagenes, etc. </li>
+                            <li><b>unload: </b> cuando el user agent ha eliminado todos los elementos de la ventana o frame</li>
+                            <li><b>error: </b>cuando una imagen u objeto o frame no se carga correctamente </li>
+                            <li><b>abort: </b> cuando se detiene la carga de una imagen u objeto o frame antes de cargarse completamente</li>
+                        </ul>
+
+                    <h4>De formulario</h4>
+                    	<p>Algunos de ellos son:</p>
+                        <ul>
+                            <li><b>select: </b> al seleccionar un texto en un campo de texto (incluyendo tipo text y textarea).</li>
+                            <li><b>focus: </b> al recibir el foco un elemento del formulario</li>
+                            <li><b>blur: </b> al perder el foco un elemento del formulario </li>
+                            <li><b>change: </b>cuando un input pierde el foco y su valor ha cambiado </li>
+                            <li><b>submit: </b>Al hacer un sumit del formulario</li>
+                            <li><b>reset: </b>Al hacer reset en el formulario</li>
+                        </ul>
+
+                </article>
+
+                <article>
+                   <header><b>5. Los atributos pageX, pageY, currentTarget, timeStamp... ¿A qué objeto pertenecen? Demuestra su uso</b></header><br>
+                   <p>Pertenecen al objeto Event (evento disparado)</p>
+
+                    <a class="btn" href="ejemplo4.html">Demo </a>
+
+                </article>
+
+                <article>
+                    <header><b>6. Diferencia entre .on(), .live(). bind() y .delegate()</b></header>
+
+                    <h4>bind()</h4>
+
+                    <p class="deprecated">Está deprecated</p>
+
+                    <p>Se utilizaba para definir cualquier tipo de evento, pudiendo definir incluso varios tipos de eventos a la vez. Solo funcionaba para los elementos coincidentes con el selector existente en el momento de la ejecución del método bind. Internamente utilizaba el método on.</p>
+
+                    <p class="code">$("a").bind("click", function(event){ //aquí haríamos algo }); </p>
+
+                    <h4>live()</h4>
+
+                    <p class="deprecated">Está deprecated</p>
+
+                    <p>A diferencia de bind, si permitía definir los eventos tanto para elementos que en ese momento coinciden con el selector pero también para los que pertenecerán a él en el futuro. Internamente utilizaba el método on.</p>
+
+                    <h4>delegate()</h4>
+
+                    <p class="deprecated">Está deprecated</p>
+
+                    <p>Asignaba una función manejadora a uno o varios eventos para los elementos que coincidiesen con el selector, tanto para elementos que en ese momento coinciden con el selector pero también para los que pertenecerán a él en el futuro, y que se encuentren dentro del contexto dado.
+
+                    <p class="code">$("aside").delegate("a","click", function(event) { //aquí haríamos algo });</p>
+
+                    <p>La ventaja de este método con respecto al anterior era una mayor especificidad y un recorrido en el DOM más eficiente al no tener que recorrer el árbol completo</p>
+
+                     <h4>on()</h4>
+
+                    <p>Este método define una función ante uno o más eventos para los elementos seleccionados. Es lo que realmente utiliza internamente jquery con otros métodos como click. Se puede utilizar para lo que hacíamos tanto con bind como con delegate</p>
+
+                     <p class="code">$("div").on("a","click", function(event) { //aquí haríamos algo });</p>
+                     <p class="code">$("a").on("click", function(event) { //aquí haríamos algo});</p>
+                </article>
+        </main>
+
+        <footer>
+            Ejemplos de Nieves Borrero
+        </footer>
+    </body>
+
+</html>

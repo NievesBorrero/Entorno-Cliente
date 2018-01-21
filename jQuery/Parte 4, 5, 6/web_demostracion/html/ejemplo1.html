@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Ejemplo 1 - Nieves Borreoro</title>
+        <meta charset="UTF-8"/>
+       	<script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <script>
+        			$(document).ready(function(){
+
+        				$("#comprobar").click(function() {
+
+        				//:selected
+
+						$("#selected").html( $("#selected").html() + "Opción que has seleccionado: " 
+							+ $("select option:selected").text()+"<br>");
+
+        				//prop
+						$("#prop").html($("#prop").html() + "<br/>¿Radiobutton 1?: " + $("#radiobuttonA").prop("checked"));
+						$("#prop").html($("#prop").html() + "<br/>¿Radiobutton 2?: " + $("#radiobuttonB").prop("checked"));
+
+						
+						//checked
+						var cbChecked = $("#checkbox:checked").length>0; // Si su longitud es mayor que 0 habra sido seleccionado.
+						$("#checked").html( $("#checked").html() + "Checkbox seleccionado: " + cbChecked +"<br>");
+
+						var radio1Selected= $("#radiobuttonA:checked").length>0;
+						$("#checked").html(  $("#checked").html() + "<br/>¿Radiobutton 1?: " + radio1Selected);
+
+						var radio2Selected = $("#radiobuttonB:checked").length>0;
+						$("#checked").html(  $("#checked").html() + "<br/>¿Radiobutton 2?: " + radio2Selected);
+						
+
+						//Usando val
+
+						var cbChecked = $("#checkbox:checked").val()!=undefined;
+						$("#val").html(  $("#val").html() + "Checkbox seleccionado: " + cbChecked +"<br>");
+
+						var radio1Selected= $("#radiobuttonA:checked").val()!=undefined;
+						$("#val").html(  $("#val").html() + "<br/>¿Radiobutton 1?: " + radioAChecked);
+
+						var radio2Selected = $("#radiobuttonB:checked").val()!=undefined;
+						$("#val").html(  $("#val").html() + "<br/>¿Radiobutton 2?: " + radio2Selected);
+
+						});
+							
+					});
+        </script>
+
+    </head>  
+
+    <body>
+
+    	<form class="simpleForm">
+    		<h3>Formulario</h3>
+	    	Checkbox <input type="checkbox" name="checkbox"  id="checkbox"><br><br>
+	    	Radiobutton 1 <input type="radio" name="radiobutton" checked id="radiobuttonA" value="RadiobuttonA">
+	    	Radiobutton 2<input type="radio" name="radiobutton" id="radiobuttonB" value="RadiobuttonB"><br><br>
+
+	    	<span>selecciona una opción: </span>
+	    	<select>
+				<option>Opción 1</option>
+				<option>Opción 2</option>
+				<option>Opción 3</option>
+			</select><br><br>
+			<input type=button id="comprobar" value="Comprobar funcionamiento"/>      
+                        
+		 </form>
+
+    	<div id="selected">
+    		<h4>¿Cómo funciona :selected?</h4>
+    	</div>
+
+    	<div id="prop">
+    		<h4>¿Cómo funciona prop()?</h4>    		
+    	</div>
+
+    	<div>
+    		<h4 class="deprecated">attr() - deprecated</h4>
+    	</div>
+
+    	<div id="checked">
+			<h4>¿Cómo funciona :checked?</h4>
+    	</div>
+
+    	<div id="val">
+			<h4>¿Cómo funciona val()?</h4>
+    	</div>
+
+    </body>
+
+</html>

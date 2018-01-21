@@ -1,0 +1,37 @@
+<html lang="en">
+	<head>
+		<title>Cola de funciones que no son efectos</title>
+		<script src="./js/jquery-3.2.1.js" type="text/javascript"></script>
+		<script src="./js/ejercicio8.7.js" type="text/javascript"></script>
+		<style type="text/css">
+			body{
+				font-size: 0.75em;
+				font-family: tahoma, verdana, sans-serif;
+			}
+			#micapa{
+				margin-top: 20px;
+				width: 400px;
+				background-color: #f80;
+				padding: 18px;
+				text-align: center;
+				font-size: 1.5em;
+				top: 100px;
+				left: 300px;
+				position: absolute;
+			}
+			button.botondetener{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="botoncomenzar">Comenzar animación</button>
+		<br>
+		<button id="botonparar" class="botondetener">Pasar a la siguiente etapa de la animación</button>
+		<br>
+		<button id="botonpararllegar" class="botondetener">Pasar a la siguiente etapa, pero llegar hasta el final de donde se planeaba la animación</button>
+		<br>
+		<button id="botonparartodo" class="botondetener">Parar todo!</button>
+		<div id="micapa">Hola a todos!!!</div>
+	</body>
+</html>
