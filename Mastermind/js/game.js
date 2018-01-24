@@ -70,8 +70,9 @@
             break;
         }
 
-        puntero++;
          }
+         if(puntero<4)
+        	puntero++;
     }
 
     /**
@@ -167,8 +168,8 @@
             }
 
             if (punteroComprobacion == 4) {
-                tableroIzquierda.style = "display:none";
                 divCampeon.style = "display: block;";
+                btnComprobar.setAttribute("disabled", "true");
 
             }
 
@@ -191,6 +192,7 @@
     let limpiarFicha = function (event) {
         event.target.style = "background-color: transparent;";
         event.target.removeEventListener("click", limpiarFicha);
+        puntero--;
     }
 
     /**
@@ -232,11 +234,9 @@
         tableroIzquierda = document.getElementById("tablero");       
         btnComprobar = document.getElementById("btnCheck");
         divCampeon = document.getElementById("divCampeon");
-        btnReiniciar = document.getElementById("btnReset");
         btnReset = document.getElementById("exit");
         //Eventos
         btnComprobar.addEventListener("click", comprobar);
-        btnReiniciar.addEventListener("click", reiniciar);
         btnReset.addEventListener("click", exit);
         for (let i = 0; i < colores.length; i++) {
             colores[i].addEventListener("click", pintarCasilla.bind(null, colores[i].id));
