@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Nieves Borrero</title>
+	<script src="../js/jquery-3.2.1.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="../js/jquery-ui.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="../js/effects.js" type="text/javascript" charset="utf-8" ></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/jquery-ui.css">
+
+</head>
+<body>
+	<h1>Effects - Nieves Borrero</h1>
+	<a class="volver" href="../index.html">Volver a inicio</a>
+  <div>
+    <div class="toggler">
+      <div id="effect" class="ui-widget-content ui-corner-all">
+      <p>
+        La culpa fué.......................... del chachachá
+      </p>
+    </div>
+</div>
+ 
+<button id="button" class="ui-state-default ui-corner-all">Púlsame</button>
+  </div>
+  <div class="info">    
+    <p><b>Componente utilizado: </b> Color animation</p>
+    <p><b>Enlace a la página del sitio oficial donde se muestra la demo:</b> <a href="http://jqueryui.com/animate"/>Aquí</a></p>
+    <p><b>Breve descripción: </b> Permite alterar las propiedades del elemento durante la transición de colores.</p>
+    <p><b>Código:</b></p>
+    <p> $( function() {
+    var state = true;
+    $( "#button" ).on( "click", function() {
+      if ( state ) {
+        $( "#effect" ).animate({
+          backgroundColor: "#B24926",
+          color: "#fff",
+          width: 500
+        }, 3000 );
+      } else {
+        $( "#effect" ).animate({
+          backgroundColor: "#fff",
+          color: "#000",
+          width: 240
+        }, 3000 );
+      }
+      state = !state;
+    });
+  } );</p>
+
+  </div>
+
+	
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Nieves Borrero</title>
+	<script src="../js/jquery-3.2.1.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="../js/jquery-ui.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="../js/widgets.js" type="text/javascript" charset="utf-8" ></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/jquery-ui.css">
+
+</head>
+<body>
+	<h1>Widgets - Nieves Borrero</h1>
+  <a class="volver" href="../index.html">Volver a inicio</a>
+	<div>
+		<h3>
+		  <label for="amount">¿Cuánto quieres donar a mi futura startup "Dialog as a Service"?</label>
+		  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		</h3>
+		<div id="slider">
+		</div>
+	</div>
+	<div class="info">		
+    <p><b>Componente utilizado: </b> Slider</p>
+    <p><b>Enlace a la página del sitio oficial donde se muestra la demo:</b> <a href="http://jqueryui.com/slider/#steps">Aquí</a></p>
+    <p><b>Breve descripción: </b> Permite incrementar los valores del slider arrastrándolo mediante el ratón</p>
+    <p><b>Código:</b></p>
+    <p> $( function() {
+    $( "#slider" ).slider({
+      value:100,
+      min: 0,
+      max: 3000,
+      step: 10,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( $( "#slider" ).slider( "value" ) + "€");
+  } );</p>
+
+	</div>
+	
+</body>
+</html>

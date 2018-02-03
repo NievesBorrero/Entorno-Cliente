@@ -1,0 +1,46 @@
+body{
+	padding: 10px;
+}
+
+h1{
+	color: #B24926;
+}
+
+li{	
+	padding: 10px;
+	width: 200px;
+	list-style: none;
+	margin: 5px;
+}
+
+.volver{
+	text-decoration: none;
+	color: white;
+	padding: 5px;
+	background-color: #B24926;
+	margin-bottom: 10px;
+}
+
+.info, li{
+	border: 1px solid #B24926;
+}
+
+body > div{
+	padding: 10px;
+}
+
+#slider{
+	margin-bottom: 20px;
+}
+
+.toggler{
+	width: 240px;
+	margin-bottom: 30px;
+}
+
+
+#button{
+	padding: 10px;
+	background-color: #B24926;
+	border: none;
+}
