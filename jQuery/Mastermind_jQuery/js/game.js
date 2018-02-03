@@ -6,19 +6,12 @@
  */
 
 {
-    let puntero;   
-   // let punteroComprobacion;
+    let puntero;
     let casillas;
-   // let colores;
     let casillasPistas;   
     let num_lineas;
     let divCampeon;
     let haGanado;
-
-    let btnSalir;
-    let btnComprobar;
-    let btnReiniciar;
-    let btnReset;
 
     const NUM_CASILLAS = 4;
 
