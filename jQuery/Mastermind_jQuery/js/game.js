@@ -1,8 +1,6 @@
 /**
  * @author Nieves Borrero
  * @version 1.0
- * Correcciones: 
- * Usar pointerEvent
  */
 
 {
