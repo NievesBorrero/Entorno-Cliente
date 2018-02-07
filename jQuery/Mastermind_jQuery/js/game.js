@@ -3,6 +3,11 @@
  * @version 1.0
  */
 
+ /* CORREGIR:
+  * Poner $ delante de las variables jQuery como buena práctica.
+  * Poner const en mis i de los for en vez de let.
+  */
+
 {
     let puntero;
     let casillas;
@@ -10,53 +15,41 @@
     let num_lineas;
     let divCampeon;
     let haGanado;
-
     const NUM_CASILLAS = 4;
 
     /**
      * Pinta una casilla de un color según el id introducido por parámetro.
-     * @param  id
      */
     let pintarCasilla = function () {
-
-         for (let i = 0; i < NUM_CASILLAS; i++) {
-
+         for (let i = 0; i < NUM_CASILLAS; i++) {           
             if (casillas[i].style.backgroundColor == "transparent" || casillas[i].style.backgroundColor == "") {
-
-            switch (this.id) {
-                case "blanca":
-                    casillas[i].style= "background-color: white;";
-                    break;
-
-                case "negra":
-                    casillas[i].style = "background-color: black;";
-                    break;
-
-                case "roja":
-                    casillas[i].style = "background-color: red;";
-                    break;
-
-                case "marron":
-                    casillas[i].style = "background-color: brown;";
-                    break;
-
-                case "amarilla":
-                    casillas[i].style = "background-color: yellow;";
-                    break;
-
-                case "verde":
-                    casillas[i].style = "background-color: green;";
-                    break;
-
-                case "naranja":
-                    casillas[i].style = "background-color: orange;";
-                    break;
-
-                case "azul":
-                    casillas[i].style = "background-color: blue;";
-                    break;
-            }
-
+	            switch (this.id) {
+	                case "blanca":
+	                    casillas[i].style= "background-color: white;";
+	                    break;
+	                case "negra":
+	                    casillas[i].style = "background-color: black;";
+	                    break;
+	                case "roja":
+	                    casillas[i].style = "background-color: red;";
+	                    break;
+	                case "marron":
+	                    casillas[i].style = "background-color: brown;";
+	                    break;
+	                case "amarilla":
+	                    casillas[i].style = "background-color: yellow;";
+	                    break;
+	                case "verde":
+	                    casillas[i].style = "background-color: green;";
+	                    break;
+	                case "naranja":
+	                    casillas[i].style = "background-color: orange;";
+	                    break;
+	                case "azul":
+	                    casillas[i].style = "background-color: blue;";
+	                    break;
+	            }
+            $(this).effect('shake');
             $(casillas[i]).on("click", limpiarFicha);
             break;
         }
@@ -80,7 +73,6 @@
     /**
      * Genera una nueva fila de casillas a rellenar y de casillas para pistas.
      */
-
     let crearFila = function () {  
         let fila = $("<div id='fila'></div>");        
         let divCasillas= $("<div id='divCasillas'></div>");
@@ -92,7 +84,6 @@
         $('#tablero').append(fila);
         fila.append(divCasillas);
         fila.append(pistas);
-
 
         // Generamos las casillas
         for (let i = 0; i < NUM_CASILLAS; i++) {
@@ -114,12 +105,11 @@
     /**
      * Comprueba si la combinación introducida por el usuario es correcta
      */
-
     let comprobar = function () {
         let coloresUsuario = [];       
         let punteroComprobacion = 0;
 
-      for (let i = 0; i < NUM_CASILLAS; i++) {
+        for (let i = 0; i < NUM_CASILLAS; i++) {
             switch (casillas[i].style.backgroundColor) {
                 case "red":
                     coloresUsuario.push("roja");
@@ -148,24 +138,35 @@
             }
 
         };
-
         if (puntero >= NUM_CASILLAS) {
             mastermind = masterMind.comprobarCombinacion(coloresUsuario);
-
             if (mastermind.enSuSitio > 0) {
                 while (punteroComprobacion < mastermind.enSuSitio) {
                     casillasPistas[punteroComprobacion].style = "background-color: black;";
                     punteroComprobacion++;
                 }
             }
-
             if (punteroComprobacion == NUM_CASILLAS) {
-            	$("#divCampeon").css("display", "block");
-                $("#btnCheck").css("disabled", "true");
+                $("#divCampeon").dialog("open");
+                    $("#divCampeon").dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Volver a jugar": function() {
+                                $( this ).dialog("close");
+                                    reiniciar();
+                                },
+                            "Salir": function() {
+                                $( this ).dialog("close");
+                                exit();
+
+                                }
+                        }
+            });
                 haGanado = true;
-
             }
-
             if (mastermind.esta > 0) {
                 for (let i = 0; i < mastermind.esta; i++) {
                     casillasPistas[punteroComprobacion].style = "background-color: white;";
@@ -177,13 +178,13 @@
             crearFila();
         }
     }
-
     
     /**
      * Quita el color de un círculo
      */
     let limpiarFicha = function (event) {
         $(this).css("background-color", "transparent");
+        $(this).effect('highlight');
         event.target.removeEventListener("click", limpiarFicha);
         puntero--;
     }
@@ -209,7 +210,6 @@
         window.close();
     }
 
-
     /**
     * Inicia el juego con todos sus elementos.
     */
@@ -225,11 +225,11 @@
 
         crearFila();
 
+        $("#divCampeon").dialog({ autoOpen: false });
+
         //Eventos
         $("#btnCheck").on("click", comprobar);
-        $("exit").on("click", exit);
         $(".fichas").on("click", pintarCasilla);
-        $("#reset").on("click", reiniciar);
     };
 
     $(document).ready(init);

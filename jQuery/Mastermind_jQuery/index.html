@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nieves Borrero Barea</title>
-    <link rel="stylesheet" href="./style/style.css">    
-    <script src="./js/jquery-3.2.1.js" type="text/javascript" charset="utf-8" async defer></script>
-    <script src="./js/jquery-ui.js" type="text/javascript" charset="utf-8" async defer></script>
-    <script src="./js/mastermind.js" async defe></script>
-	<script src="./js/game.js" async defe></script>  
+    <link rel="stylesheet" href="./style/style.css">   
+     <link rel="stylesheet" href="./style/jquery-ui.css">   
+    <script src="./js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/mastermind.js"></script>
+	<script src="./js/game.js"></script>  
 </head>
 
 <body>
@@ -19,12 +20,10 @@
     </header>
 
     <main id="main">
-        <div id="divCampeon">
-                <h1>ENHORABUENA! GANASTE!</h1>
-                <button id="reset"><span>Reiniciar</span></button>
-                <button id="exit"><span>Salir</span></button>
-        </div>
         <section id="tablero">
+        <div id="divCampeon" title="GANASTE">¿Deseas volver a jugar?</div>
+        <!-- Se ha modificado el estilo del dialog eliminando la X de cierre de ventana -->
+        <!-- Se ha cambiado el estilo y color de letra del título del dialog -->
         </section>
 
         <section id="listaColores">

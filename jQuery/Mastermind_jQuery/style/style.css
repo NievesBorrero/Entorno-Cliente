@@ -35,11 +35,11 @@ body > button{
     color: #75624C;
 }
 
-button:hover{
+body > button:hover{
     background-color: #F0F0F0;
 }
 
-button:active{
+body > button:active{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -59,37 +59,11 @@ button:active{
     display: inline-block;
 }
 
-#btnReset{
-    height: 30px;
-    margin: 0 auto;
-    display: block;
-    margin-top: 10px;
-}
-
-
 #listaColores {
     border:3px solid #75624c;
     border-radius: 0px 10px 0px 0px;
     align-items: center;
     justify-content: center;
-}
-
-#divCampeon {
-    display: none;
-    position: absolute;
-    top: 70px;
-    width: 70%;
-    height: 50%;
-    padding: 10px;
-    border-radius: 20px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-#divCampeon button{
-    width: 30%;
-    padding: 5px;
-     background-color: rgba(255, 255, 255, 0.5);
 }
 
 #tablero {
