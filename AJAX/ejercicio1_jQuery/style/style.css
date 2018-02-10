@@ -1,0 +1,18 @@
+  body { font: 13px Arial, Helvetica, sans-serif; }
+  h2 { margin-bottom: 0; font-size: 1.2em; }
+  #recurso, #enviar { padding: .3em; font-size: 1.2em; }
+  #principal { float: left; width: 70%; }
+  #secundario { float: right; width: 25%; }
+  #contenidos, #estados, #codigos {
+    border: 2px solid #CCC;
+    background: #FAFAFA;
+    padding: 1em;
+    white-space: pre;
+  }
+  #contenidos {
+    min-height: 400px;
+    max-height: 600px;
+    overflow: scroll;
+  }
+  #estados, #codigos { height: 50px; }
+  #codigos { font-size: 1.5em; }
