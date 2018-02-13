@@ -22,8 +22,14 @@
         	$mensaje = $mensaje."<br>".$student;
         }
     }
+
+    if($mensaje == ""){
+    	echo "No hay coincidencias";
+    }else{
+    	echo $mensaje;
+    }
     
-    echo $mensaje;
+    
 	
 ?>
 
