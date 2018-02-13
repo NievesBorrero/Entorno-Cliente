@@ -2,8 +2,6 @@
  * Manejo de AJAX con jQuery
  * @autor Nieves Borrero
  */
-
-let xhr;
  
 $(function() {
   let recurso;
