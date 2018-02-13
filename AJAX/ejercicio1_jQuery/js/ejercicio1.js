@@ -3,42 +3,45 @@
  * @autor Nieves Borrero
  */
 
+let xhr;
  
 $(function() {
   let recurso;
+  xhr = new XMLHttpRequest();
   recurso = $("#recurso");
   recurso.val(location.href);
   $("#enviar").on("click",request);
-  
 });
 
 /**
  * Envía la solicitud
  */
 let request = function(){
-  $.ajax({
+    let peticion = $.ajax({
       url: $("#recurso").html(),
       dataType: 'text',
+      
 
-      beforeSend: function() {
-        setTimeout(function() {$("#estados").html('Antes de enviar')},500);
+      beforeSend: function(xhr) {
+      		$("#estados").html('Antes de enviar ');
+
       },
-      success: function(data) {  
-        setTimeout(function() {$("#estados").html('Solicitud con éxito')},1500);
-        setTimeout(function() {$("#contenidos").text(data);},3000);
+      success: function(data, xhr) {  
+        $("#estados").html($("#estados").html()+'\nSolicitud con éxito ');
+        $("#contenidos").text(data);
       },
 
       complete: function(xhr) {
-        setTimeout(function() {
-          $("#estados").html('Solicitud completa'); 
+          $("#estados").html($("#estados").html()+'\nSolicitud completa '); 
           $("#codigos").html(xhr.statusText + ' ' + xhr.status);
-        },3000);
       },
 
       error: function(xhr) {
         $("#contenidos").html(getError(xhr.status));
       }
+
     });
+
 }
 
 /**
