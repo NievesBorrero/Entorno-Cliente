@@ -18,6 +18,7 @@ let request = function(){
     let peticion = $.ajax({
       url: $("#recurso").html(),
       dataType: 'text',
+      cache: false,
       
 
       beforeSend: function(xhr) {
