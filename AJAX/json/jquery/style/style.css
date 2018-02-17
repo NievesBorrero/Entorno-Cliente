@@ -1,0 +1,49 @@
+
+body{
+	text-align: center;
+}
+
+h2{
+	text-transform: capitalize;
+}
+
+ul {
+	list-style: none;
+	text-align: center;
+	background-color: #D3D3D3;
+	padding: 20px;
+	margin-top: 0;
+}
+
+ul li {
+	display: inline-block;
+}
+
+ul li a {
+	padding: 10px;
+	background-color: #3FC7FF;
+	text-decoration: none;
+	color: black;
+	border-radius: 5px;
+}
+ul li a:hover {
+	background-color: #3FFFD7
+}
+
+#respuesta{
+	border: 2px solid #3FC7FF;
+	width: 700px;
+	height: 400px;
+	margin: 0 auto;
+}
+
+#respuesta, .info{
+	padding: 10px;
+	text-align: center;
+}
+
+img{
+	width: 150px;
+	height: auto;
+}
+
