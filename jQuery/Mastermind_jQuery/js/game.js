@@ -2,63 +2,45 @@
  * @author Nieves Borrero
  * @version 1.0
  */
-
- /* CORREGIR:
-  * Poner $ delante de las variables jQuery como buena práctica.
-  * Poner const en mis i de los for en vez de let.
-  */
-
 {
     let puntero;
     let casillas;
     let casillasPistas;   
     let num_lineas;
     let divCampeon;
-    let haGanado;
     const NUM_CASILLAS = 4;
-
     /**
      * Pinta una casilla de un color según el id introducido por parámetro.
-     */
+     * 
+     */    
     let pintarCasilla = function () {
-         for (let i = 0; i < NUM_CASILLAS; i++) {           
-            if (casillas[i].style.backgroundColor == "transparent" || casillas[i].style.backgroundColor == "") {
-	            switch (this.id) {
-	                case "blanca":
-	                    casillas[i].style= "background-color: white;";
-	                    break;
-	                case "negra":
-	                    casillas[i].style = "background-color: black;";
-	                    break;
-	                case "roja":
-	                    casillas[i].style = "background-color: red;";
-	                    break;
-	                case "marron":
-	                    casillas[i].style = "background-color: brown;";
-	                    break;
-	                case "amarilla":
-	                    casillas[i].style = "background-color: yellow;";
-	                    break;
-	                case "verde":
-	                    casillas[i].style = "background-color: green;";
-	                    break;
-	                case "naranja":
-	                    casillas[i].style = "background-color: orange;";
-	                    break;
-	                case "azul":
-	                    casillas[i].style = "background-color: blue;";
-	                    break;
-	            }
-            $(this).effect('shake');
-            $(casillas[i]).on("click", limpiarFicha);
-            break;
-        }
-
-         }
-         if(puntero<4)
+	    for (let i = 0; i < casillas.length; i++) {
+	        if (estaVacia(i)) {
+	            casillas[i].style.backgroundColor = this.id;
+	            $(this).effect('shake');            
+	            $(casillas[i]).click(limpiarFicha);
+	            avanzarPuntero();
+	            break;
+	        }
+	    }
+	}
+    /**
+     * Avanza una posición el puntero
+     */
+    let avanzarPuntero = function(){
+        if(puntero<4)
             puntero++;
     }
-
+    /**
+     * Comprueba si la casilla está vacia
+     *
+     * @param  {int}  index 
+     * @return {boolean} true o false
+     */
+    let estaVacia = function(index){
+        let casillaActual = casillas[index];
+        return casillaActual.style.backgroundColor == "transparent" || casillaActual.style.backgroundColor == "";
+    }
     /**
      * Reinicia y modifica los valores necesarios para iniciar un nuevo turno
      */
@@ -69,116 +51,115 @@
         num_lineas++; // Dejamos preparado el sufijo para la línea siguiente.
         window.scrollTo(0, 0); 
     }
-
     /**
      * Genera una nueva fila de casillas a rellenar y de casillas para pistas.
      */
     let crearFila = function () {  
-        let fila = $("<div id='fila'></div>");        
-        let divCasillas= $("<div id='divCasillas'></div>");
-        let pistas = $("<div id='pistas'></div>");
-        let casilla;
-        let pista;
-        eliminarEventos();   
-
-        $('#tablero').append(fila);
-        fila.append(divCasillas);
-        fila.append(pistas);
-
+    	eliminarEventos();   
+        let html = "<div id='fila'><div id='divCasillas'>";                
         // Generamos las casillas
         for (let i = 0; i < NUM_CASILLAS; i++) {
-            casilla= document.createElement("div");
-            casilla.classList.add("casilla", "casilla"+num_lineas);
-            divCasillas.append(casilla);
+        	html += "<div class='casilla casilla"+num_lineas+"'></div>";
         }
-
+        html += "</div><div id='pistas'>"
         // Generamos las casillas de pistas
         for (let i = 0; i < NUM_CASILLAS; i++) {
-            pista= document.createElement("div");
-            pista.classList.add("casillaPista", "casillaPista"+num_lineas);
-            pistas.append(pista);
+            html += "<div class='casillaPista casillaPista"+num_lineas+"'></div>";
         }
-
+        html += "</div></div>";
+        $('#tablero').append(html);
         nuevoTurno();
     }
-
     /**
-     * Comprueba si la combinación introducida por el usuario es correcta
+     * Extrae los colores que ha introducido el usuario
+     *
+     * @return     {Array}  Array con los colores marcados por el usuario
      */
-    let comprobar = function () {
-        let coloresUsuario = [];       
+    let obtenerColoresUsuario = function(){    	
+        let coloresUsuario = [];  // Array de colores introducidos por el usuario para comprobar.  
+    	casillas.each(function (indice, casilla) {
+            coloresUsuario.push(casilla.style.backgroundColor);
+		});
+        return coloresUsuario;
+    }
+    /**
+     * Comprueba si la combinación introducida por el usuario coincide con la 
+     * del juego, dibujando pistas según las coincidencias
+     */
+    let comprobar = function () {   
         let punteroComprobacion = 0;
-
-        for (let i = 0; i < NUM_CASILLAS; i++) {
-            switch (casillas[i].style.backgroundColor) {
-                case "red":
-                    coloresUsuario.push("roja");
-                    break;
-                case "white":
-                    coloresUsuario.push("blanca");
-                    break;
-                case "black":
-                    coloresUsuario.push("negra");
-                    break;
-                case "green":
-                    coloresUsuario.push("verde");
-                    break;
-                case "blue":
-                    coloresUsuario.push("azul");
-                    break;
-                case "brown":
-                    coloresUsuario.push("marron");
-                    break;
-                case "orange":
-                    coloresUsuario.push("naranja");
-                    break;
-                case "yellow":
-                    coloresUsuario.push("amarilla");
-                    break;
-            }
-
-        };
+        let coloresUsuario = obtenerColoresUsuario();
         if (puntero >= NUM_CASILLAS) {
             mastermind = masterMind.comprobarCombinacion(coloresUsuario);
             if (mastermind.enSuSitio > 0) {
-                while (punteroComprobacion < mastermind.enSuSitio) {
-                    casillasPistas[punteroComprobacion].style = "background-color: black;";
-                    punteroComprobacion++;
-                }
-            }
-            if (punteroComprobacion == NUM_CASILLAS) {
-                $("#divCampeon").dialog("open");
-                    $("#divCampeon").dialog({
-                        resizable: false,
-                        height: "auto",
-                        width: 400,
-                        modal: true,
-                        buttons: {
-                            "Volver a jugar": function() {
-                                $( this ).dialog("close");
-                                    reiniciar();
-                                },
-                            "Salir": function() {
-                                $( this ).dialog("close");
-                                exit();
-
-                                }
-                        }
-            });
-                haGanado = true;
+                 punteroComprobacion = pintarNegras(punteroComprobacion);
             }
             if (mastermind.esta > 0) {
-                for (let i = 0; i < mastermind.esta; i++) {
-                    casillasPistas[punteroComprobacion].style = "background-color: white;";
-                    punteroComprobacion++;
-                }
-                punteroComprobacion = 0;
+                punteroComprobacion = pintarBlancas(punteroComprobacion);
             }
-            if(!haGanado)
+            comprobarGanador(punteroComprobacion);
+        }
+    }
+    /**
+     * Comprueba si la combinación de fichas del usuario es idéntica a la
+     * del juego.
+     * @param  {int}  punteroComprobacion  
+     */
+    let comprobarGanador = function(punteroComprobacion){
+    	if (punteroComprobacion == NUM_CASILLAS) {
+            openDialog();
+        }else{
             crearFila();
         }
     }
-    
+    /**
+     * Pinta de negro una casilla de pista en caso de que la ficha a comprobar coincida 
+     * en color y en sitio con la del juego.
+     * @param  {int}  punteroComprobacion  
+     * @return {int}  punteroComprobacíon
+     */
+    let pintarNegras = function(punteroComprobacion){
+    	for (let i = 0; i < mastermind.enSuSitio; i++)  {
+            casillasPistas[punteroComprobacion].style = "background-color: black;";
+            punteroComprobacion++;
+        }
+        return punteroComprobacion;
+    }
+    /**
+     * Pinta de blanco una casilla de pista en caso de que la ficha a comprobar coincida 
+     * en color pero no en sitio con la del juego.
+     * @param      {int}  punteroComprobacion  
+     * @return     {int}  punteroComprobacíon
+     */
+    let pintarBlancas = function(punteroComprobacion){
+    	for (let i = 0; i < mastermind.esta; i++) {
+            casillasPistas[punteroComprobacion].style = "background-color: white;";
+            punteroComprobacion++;
+        }
+        return 0;
+    }
+    /**
+     * Abre una ventana
+     */
+    let openDialog = function(){
+        divCampeon.dialog("open");
+            divCampeon.dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Volver a jugar": function() {
+                        $( this ).dialog("close");
+                            reiniciar();
+                    },
+                    "Salir": function() {
+                        $( this ).dialog("close");
+                            exit();
+                    }
+                }
+            });
+    }   
     /**
      * Quita el color de un círculo
      */
@@ -188,28 +169,24 @@
         event.target.removeEventListener("click", limpiarFicha);
         puntero--;
     }
-
     /**
      * Elimina el detector de evento de las casillas de la linea anterior para que el usuario no pueda clickar
      */
     let eliminarEventos = function () {
-       $('.casilla').off("click");
+       casillas.off("click");
     }
-
     /**
     * Permite reiniciar el juego
     */
     let reiniciar = function () {
         document.location.reload(true);
     }
-
     /**
      * Cierra la ventana 
      */
     let exit = function(){
         window.close();
     }
-
     /**
     * Inicia el juego con todos sus elementos.
     */
@@ -218,19 +195,14 @@
         masterMind.mostrar();
         $('#main').hide().toggle( "blind", 1500);
         num_lineas=0;
-        haGanado = false;
-
         casillas = $(".casilla");
         casillasPistas = $(".casillaPista");
-
+        divCampeon = $("#divCampeon");
         crearFila();
-
-        $("#divCampeon").dialog({ autoOpen: false });
-
+        divCampeon.dialog({ autoOpen: false });
         //Eventos
-        $("#btnCheck").on("click", comprobar);
-        $(".fichas").on("click", pintarCasilla);
+        $("#btnCheck").click(comprobar);
+        $(".fichas").click(pintarCasilla);
     };
-
     $(document).ready(init);
 }

@@ -82,42 +82,42 @@ body > button:active{
     border: 1px solid #75624c; 
 }
 
-#roja {
+#red {
     background-color: red;
     margin-top: 10px;
 }
 
-#blanca {
+#white {
     background-color: white;
     margin-top: 10px;
 }
 
-#negra {
+#black {
     background-color: black;
     margin-top: 10px;
 }
 
-#amarilla{
+#yellow{
     background-color: yellow;
     margin-top: 10px;
 }
 
-#naranja {
+#orange {
     background-color: orange;
     margin-top: 10px;
 }
 
-#marron {
+#brown {
     background-color: brown;
     margin-top: 10px;
 }
 
-#azul {
+#blue {
     background-color: blue;
     margin-top: 10px;
 }
 
-#verde {
+#green {
     background-color: green;
     margin-top: 10px;
 }
