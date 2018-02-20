@@ -121,8 +121,7 @@
     /**
      * Pinta de blanco una casilla de pista en caso de que la ficha a comprobar coincida 
      * en color pero no en sitio con la del juego.
-     * @param      {int}  punteroComprobacion  
-     * @return     {int}  punteroComprobacíon
+     * @param      {int}  punteroComprobacion
      */
     let pintarBlancas = function(punteroComprobacion){
     	for (let i = 0; i < mastermind.esta; i++) {
