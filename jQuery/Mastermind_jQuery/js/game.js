@@ -89,7 +89,7 @@
     let comprobar = function () {   
         if (puntero >= NUM_CASILLAS) {
             mastermind = masterMind.comprobarCombinacion(getColoresUsuario());
-            pintarBlancas(pintarNegras());
+            pintarBlancas(pintarNegras()); 
         }
     }
     /**
