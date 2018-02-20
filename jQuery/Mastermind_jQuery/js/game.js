@@ -4,21 +4,21 @@
  */
 {
     let puntero;
-    let casillas;
-    let casillasPistas;   
+    let $casillas;
+    let $casillasPistas;   
     let num_lineas;
-    let divCampeon;
+    let $divCampeon;
     const NUM_CASILLAS = 4;
     /**
      * Pinta una casilla de un color según el id introducido por parámetro.
      * 
      */    
     let pintarCasilla = function () {
-	    for (let i = 0; i < casillas.length; i++) {
+	    for (let i = 0; i < $casillas.length; i++) {
 	        if (estaVacia(i)) {
-	            casillas[i].style.backgroundColor = this.id;
+	            $casillas[i].style.backgroundColor = this.id;
 	            $(this).effect('shake');            
-	            $(casillas[i]).click(limpiarFicha);
+	            $($casillas[i]).on('click', limpiarFicha);
 	            avanzarPuntero();
 	            break;
 	        }
@@ -38,7 +38,7 @@
      * @return {boolean} true o false
      */
     let estaVacia = function(index){
-        let casillaActual = casillas[index];
+        let casillaActual = $casillas[index];
         return casillaActual.style.backgroundColor == "transparent" || casillaActual.style.backgroundColor == "";
     }
     /**
@@ -46,8 +46,8 @@
      */
     let nuevoTurno = function(){
         puntero = 0; // Cuando se crea una nueva línea, debemos poner el puntero a 0 para ir añadiendo los colores desde el inicio.
-        casillas = $(".casilla" + num_lineas); // Cambiamos las casillas objetivo
-        casillasPistas = $(".casillaPista" + num_lineas); // Cambiamos las casillas de pista objetivo        
+        $casillas = $(".casilla" + num_lineas); // Cambiamos las casillas objetivo
+        $casillasPistas = $(".casillaPista" + num_lineas); // Cambiamos las casillas de pista objetivo        
         num_lineas++; // Dejamos preparado el sufijo para la línea siguiente.
         window.scrollTo(0, 0); 
     }
@@ -75,9 +75,9 @@
      *
      * @return     {Array}  Array con los colores marcados por el usuario
      */
-    let obtenerColoresUsuario = function(){    	
+    let getColoresUsuario = function(){    	
         let coloresUsuario = [];  // Array de colores introducidos por el usuario para comprobar.  
-    	casillas.each(function (indice, casilla) {
+    	$casillas.each(function (indice, casilla) {
             coloresUsuario.push(casilla.style.backgroundColor);
 		});
         return coloresUsuario;
@@ -87,17 +87,9 @@
      * del juego, dibujando pistas según las coincidencias
      */
     let comprobar = function () {   
-        let punteroComprobacion = 0;
-        let coloresUsuario = obtenerColoresUsuario();
         if (puntero >= NUM_CASILLAS) {
-            mastermind = masterMind.comprobarCombinacion(coloresUsuario);
-            if (mastermind.enSuSitio > 0) {
-                 punteroComprobacion = pintarNegras(punteroComprobacion);
-            }
-            if (mastermind.esta > 0) {
-                punteroComprobacion = pintarBlancas(punteroComprobacion);
-            }
-            comprobarGanador(punteroComprobacion);
+            mastermind = masterMind.comprobarCombinacion(getColoresUsuario());
+            pintarBlancas(pintarNegras());
         }
     }
     /**
@@ -118,9 +110,10 @@
      * @param  {int}  punteroComprobacion  
      * @return {int}  punteroComprobacíon
      */
-    let pintarNegras = function(punteroComprobacion){
+    let pintarNegras = function(){
+    	let punteroComprobacion = 0;
     	for (let i = 0; i < mastermind.enSuSitio; i++)  {
-            casillasPistas[punteroComprobacion].style = "background-color: black;";
+            $casillasPistas[punteroComprobacion].style = "background-color: black;";
             punteroComprobacion++;
         }
         return punteroComprobacion;
@@ -133,17 +126,18 @@
      */
     let pintarBlancas = function(punteroComprobacion){
     	for (let i = 0; i < mastermind.esta; i++) {
-            casillasPistas[punteroComprobacion].style = "background-color: white;";
+            $casillasPistas[punteroComprobacion].style = "background-color: white;";
             punteroComprobacion++;
         }
-        return 0;
+        /* Una vez comprobamos las que están, debemos comprobar ek ganador*/
+        comprobarGanador(punteroComprobacion);
     }
     /**
      * Abre una ventana
      */
     let openDialog = function(){
-        divCampeon.dialog("open");
-            divCampeon.dialog({
+        $divCampeon.dialog("open");
+            $divCampeon.dialog({
                 resizable: false,
                 height: "auto",
                 width: 400,
@@ -163,17 +157,15 @@
     /**
      * Quita el color de un círculo
      */
-    let limpiarFicha = function (event) {
-        $(this).css("background-color", "transparent");
-        $(this).effect('highlight');
-        event.target.removeEventListener("click", limpiarFicha);
+    let limpiarFicha = function (event){
+        $(this).off('click',limpiarFicha).css("background-color", "transparent").effect("highlight");
         puntero--;
     }
     /**
      * Elimina el detector de evento de las casillas de la linea anterior para que el usuario no pueda clickar
      */
     let eliminarEventos = function () {
-       casillas.off("click");
+       $casillas.off("click");
     }
     /**
     * Permite reiniciar el juego
@@ -195,14 +187,15 @@
         masterMind.mostrar();
         $('#main').hide().toggle( "blind", 1500);
         num_lineas=0;
-        casillas = $(".casilla");
-        casillasPistas = $(".casillaPista");
-        divCampeon = $("#divCampeon");
+        $casillas = $(".casilla");
+        $casillasPistas = $(".casillaPista");
+        $divCampeon = $("#divCampeon");
         crearFila();
-        divCampeon.dialog({ autoOpen: false });
+        $divCampeon.dialog({ autoOpen: false });
         //Eventos
         $("#btnCheck").click(comprobar);
         $(".fichas").click(pintarCasilla);
     };
-    $(document).ready(init);
+
+    $().ready(init);
 }
