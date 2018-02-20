@@ -104,6 +104,16 @@
             crearFila();
         }
     }
+
+    /**
+     * Pinta una pista del color introducido por parámetro en la posición dada 
+     *
+     * @param {int}  punteroComprobacion  posición
+     * @param {string}  color
+     */
+    let pintarPistas = function(punteroComprobacion, color){
+    	$casillasPistas[punteroComprobacion].style = "background-color:"+ color +";";
+    }
     /**
      * Pinta de negro una casilla de pista en caso de que la ficha a comprobar coincida 
      * en color y en sitio con la del juego.
@@ -113,7 +123,7 @@
     let pintarNegras = function(){
     	let punteroComprobacion = 0;
     	for (let i = 0; i < mastermind.enSuSitio; i++)  {
-            $casillasPistas[punteroComprobacion].style = "background-color: black;";
+            pintarPistas(punteroComprobacion, "black");
             punteroComprobacion++;
         }
         return punteroComprobacion;
@@ -125,7 +135,7 @@
      */
     let pintarBlancas = function(punteroComprobacion){
     	for (let i = 0; i < mastermind.esta; i++) {
-            $casillasPistas[punteroComprobacion].style = "background-color: white;";
+            pintarPistas(punteroComprobacion, "white");
             punteroComprobacion++;
         }
         /* Una vez comprobamos las que están, debemos comprobar ek ganador*/
